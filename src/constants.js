@@ -1,7 +1,9 @@
-const BALL_COUNT = 10;
+// Canvas properties
+const VIEWPORT_WIDTH = 1200;
+const VIEWPORT_HEIGHT = 600;
 
-const VIEW_PORT_WIDTH = 500;
-const VIEW_PORT_HEIGHT = 500;
-
-const BALL_WIDTH = 50;
-const BALL_HEIGHT = 50;
+// Ball properties
+const BALL_COUNT = 50;
+const BALL_WIDTH = 20;
+const BALL_HEIGHT = 20;
+const BORDER_RADIUS = 20;

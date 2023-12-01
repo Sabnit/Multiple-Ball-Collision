@@ -1,43 +1,39 @@
-// Ball will be rendered in this dom element
-const viewport = document.querySelector(".viewport");
+let canvas = document.getElementById("canvas");
 
-// Array to store balls
-const ballsArray = [];
+// An array to store all the balls
+let balls_array = [];
 
-// Create balls and store in an array
+// Create instances of the balls and add them to the array
 for (let i = 0; i < BALL_COUNT; i++) {
-  const x = getRandomNumber(0, VIEW_PORT_WIDTH - BALL_WIDTH);
+  // Generate random properties for the ball
+  let radius = getRandomNumber(1, 10);
+  let x = getRandomNumber(radius, VIEWPORT_WIDTH - radius);
+  let y = getRandomNumber(radius, VIEWPORT_HEIGHT - radius);
+  let dx = getRandomNumber(-2, 2);
+  let dy = getRandomNumber(-2, 2);
+  let color = getRandomColor();
 
-  const y = getRandomNumber(0, VIEW_PORT_HEIGHT - BALL_HEIGHT);
-  const ball = new Ball(x, y);
-
-  ball.element.style.width = BALL_WIDTH + "px";
-
-  ball.element.style.height = BALL_HEIGHT + "px";
-
-  ballsArray.push(ball);
+  // Create a new ball and add it to the array
+  let newBall = new Ball(x, y, dx, dy, radius, color);
+  balls_array.push(newBall);
 }
 
-// Add balls in viewport
-ballsArray.forEach((ball) => {
-  viewport.appendChild(ball.getElement());
-});
+/**
+ * Initiates and continues the animation loop by updating ball positions and rendering frames.
+ */
+function startAnimation() {
+  // Clear the canvas before refreshing the frame
+  canvas.innerHTML = "";
 
-// Renders balls
-function render() {
-  ballsArray.forEach((ball) => {
-    ball.draw();
-    ball.move();
-    ball.checkWallCollision(0, 0, VIEW_PORT_WIDTH, VIEW_PORT_HEIGHT);
+  //  Create and update each ball's position
+  for (let i = 0; i < BALL_COUNT; i++) {
+    balls_array[i].createBall();
+    balls_array[i].update(balls_array);
+  }
 
-    ballsArray.forEach((otherBall) => {
-      if (ball === otherBall) return;
-
-      ball.checkBallCollision(otherBall);
-    });
-  });
-
-  requestAnimationFrame(render);
+  // Request the next animation frame
+  requestAnimationFrame(startAnimation);
 }
 
-render();
+// Call the start function to start the animation
+startAnimation();
