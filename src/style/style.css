@@ -1,0 +1,12 @@
+.viewport {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  position: relative;
+}
+
+.ball {
+  aspect-ratio: 1;
+  position: absolute;
+  border-radius: 50%;
+}

@@ -1,0 +1,7 @@
+const BALL_COUNT = 10;
+
+const VIEW_PORT_WIDTH = 500;
+const VIEW_PORT_HEIGHT = 500;
+
+const BALL_WIDTH = 50;
+const BALL_HEIGHT = 50;
